@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Attendance System</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>📋 Attendance System</h1>
+      <p>Simple & Easy</p>
+    </header>
+
+    <nav class="tabs">
+      <button class="tab-btn active" data-tab="check-in">Check In/Out</button>
+      <button class="tab-btn" data-tab="employees">Employees</button>
+      <button class="tab-btn" data-tab="attendance">Attendance</button>
+      <button class="tab-btn" data-tab="reports">Reports</button>
+    </nav>
+
+    <!-- Check-in Tab -->
+    <div id="check-in" class="tab-content active">
+      <div class="card">
+        <h2>Quick Check In / Out</h2>
+        <div class="form-group">
+          <label>Select Employee:</label>
+          <select id="selectEmployee">
+            <option value="">-- Choose --</option>
+          </select>
+        </div>
+        <div class="button-group">
+          <button class="btn btn-success" onclick="checkIn()">✓ Check In</button>
+          <button class="btn btn-warning" onclick="checkOut()">✕ Check Out</button>
+        </div>
+        <div id="checkInMessage" class="message"></div>
+
+        <hr>
+        <h3>Today's Status</h3>
+        <div id="todayStatus" class="status-list"></div>
+      </div>
+    </div>
+
+    <!-- Employees Tab -->
+    <div id="employees" class="tab-content">
+      <div class="card">
+        <h2>Add Employee</h2>
+        <div class="form-group">
+          <input type="text" id="empName" placeholder="Full Name" required>
+        </div>
+        <div class="form-group">
+          <input type="email" id="empEmail" placeholder="Email" required>
+        </div>
+        <div class="form-group">
+          <input type="text" id="empDepartment" placeholder="Department">
+        </div>
+        <button class="btn btn-primary" onclick="addEmployee()">Add</button>
+        <div id="empMessage" class="message"></div>
+      </div>
+
+      <div class="card">
+        <h2>Employee List</h2>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Department</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="employeeList"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Attendance Tab -->
+    <div id="attendance" class="tab-content">
+      <div class="card">
+        <h2>Attendance Records</h2>
+        <div class="filter-group">
+          <div class="form-group">
+            <input type="date" id="filterDate">
+          </div>
+          <div class="form-group">
+            <input type="month" id="filterMonth">
+          </div>
+          <button class="btn btn-primary" onclick="filterAttendance()">Filter</button>
+          <button class="btn btn-secondary" onclick="clearFilter()">Clear</button>
+        </div>
+
+        <h3>Manual Entry</h3>
+        <div class="form-group">
+          <select id="manualEmpId">
+            <option value="">-- Choose Employee --</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <input type="date" id="manualDate">
+        </div>
+        <div class="form-group">
+          <input type="time" id="manualCheckIn">
+        </div>
+        <div class="form-group">
+          <input type="time" id="manualCheckOut">
+        </div>
+        <div class="form-group">
+          <select id="manualStatus">
+            <option value="present">Present</option>
+            <option value="absent">Absent</option>
+            <option value="leave">Leave</option>
+          </select>
+        </div>
+        <button class="btn btn-success" onclick="addManualAttendance()">Record</button>
+
+        <hr>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Employee</th>
+              <th>Check In</th>
+              <th>Check Out</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="attendanceList"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Reports Tab -->
+    <div id="reports" class="tab-content">
+      <div class="card">
+        <h2>Monthly Summary</h2>
+        <div class="form-group">
+          <input type="month" id="reportMonth" value="">
+        </div>
+        <button class="btn btn-primary" onclick="generateReport()">Generate</button>
+        <button class="btn btn-secondary" onclick="printReport()">Print</button>
+
+        <table class="data-table" id="reportTable" style="margin-top: 20px;">
+          <thead>
+            <tr>
+              <th>Employee</th>
+              <th>Department</th>
+              <th>Present</th>
+              <th>Absent</th>
+              <th>Leave</th>
+            </tr>
+          </thead>
+          <tbody id="reportList"></tbody>
+        </table>
+      </div>
+
+      <div class="card">
+        <h2>Individual Report</h2>
+        <div class="form-group">
+          <select id="reportEmpId">
+            <option value="">-- Choose Employee --</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <input type="month" id="reportEmpMonth">
+        </div>
+        <button class="btn btn-primary" onclick="generateEmployeeReport()">Generate</button>
+
+        <table class="data-table" style="margin-top: 20px;">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Check In</th>
+              <th>Check Out</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="employeeReportList"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/script.js"></script>
+</body>
+</html>
