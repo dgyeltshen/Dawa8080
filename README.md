@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 📋 Attendance Management System
 
 A simple, easy-to-use attendance tracking system built with Node.js and SQLite.
@@ -169,3 +170,7 @@ Free to use and modify.
 ---
 
 **Ready to use! Just extract and run!** 🚀
+=======
+# Dawa8080
+testing
+>>>>>>> a70676a4dc847d08b431fcc87f87cbc5bff9f4b1
